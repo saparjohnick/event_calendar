@@ -35,7 +35,3 @@ blocks:
         - name: RSpec
           commands:
             - bundle exec rake spec
-      epilogue:
-        always:
-          commands:
-            - test-results publish junit.xml

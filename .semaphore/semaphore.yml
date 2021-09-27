@@ -29,9 +29,8 @@ blocks:
           - cache restore
           - bundle install
           - cache store
-          - sem-service start postgres
-          - 'bundle exec rake db:setup'
+					- sem-service start postgres 11
       jobs:
         - name: RSpec
           commands:
-            - bundle exec rake spec
+            - bundle exec rspec

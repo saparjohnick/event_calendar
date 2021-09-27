@@ -1,0 +1,17 @@
+<header class="nav navbar">
+
+  <div class="container">
+    <%= link_to "Flatstack calendar", root_url, id: "logo" %>
+    <nav>
+      <ul>
+        <% if user_signed_in? %>
+          <li class="btn" ><%= link_to "Sign out", destroy_user_session_url, method: :delete %></li>
+          <li class="btn" ><%= link_to "New event", new_event_url %></li>
+        <% else %>
+          <li class="btn" type="button"><%= link_to "Sign in", new_user_session_url %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+
+</header>

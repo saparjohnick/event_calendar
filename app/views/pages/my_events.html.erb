@@ -1,0 +1,6 @@
+<% if user_signed_in? %>
+  <%= render 'events/current_user_events' %>
+  <a><%= link_to "Show all events, please", root_url, class: "nav switch btn" %></a>
+<% else %>
+  <%= render 'shared/jumbotron'%>
+<% end %>

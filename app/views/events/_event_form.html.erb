@@ -1,0 +1,27 @@
+<div class="event_form">
+  <%= form_for(@event, html: { multipart: true }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: f.object %>
+    <div class="field">
+      <%= f.label :name, "Event name:" %></br>
+      <%= f.text_field :name, placeholder: "Event name"%>
+    </div>
+    <div class="field">
+      <%= f.label :description, "Description:" %></br>
+      <%= f.text_area :description, placeholder: "Tell more about your event" %>
+    </div>
+    <div class="field">
+      <%= f.label :period, "Repeat:" %></br>
+      <%= f.select :period, [["Once", "once"], ["Daily", "daily"], ["Weekly", "weekly"], ["Monthly", "monthly"], ["Yearly", "yearly"]], selected: "" %>
+    </div>
+    <div class="field">
+      <%= f.label :start_time, "Event starts at:" %></br>
+      <%= f.datetime_local_field :start_time %>
+    </div>
+    <div class="field">
+      <%= f.label :end_time, "Evend ends at:" %></br>
+      <%= f.datetime_local_field :end_time %>
+    </div>  
+
+      <%= f.submit "Save my event", class: "btn create_event"%>
+  <% end %>
+</div>

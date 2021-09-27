@@ -1,0 +1,33 @@
+<main>
+  <section class="py-0 text-center container">
+    <div class="row py-lg-0">
+      <div class="show_event">
+        <div class="field">
+          User: <%= @event.user.email %>
+        </div></br>
+        <div class="field">
+          Event: <%= @event.name %>
+        </div></br>
+        <div class="field">
+          Description: <%= @event.description %> 
+        </div></br>
+        <div class="field">
+          Scheduled: <%= @event.period %>
+        </div></br>
+        <div class="field">
+        <span class="timestamp">  
+          Posted <%= time_ago_in_words(@event.created_at) %> ago.
+          
+        <span></br>
+          <% if policy(@event).destroy? %>
+            <%= link_to "Delete", event_url(@event.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn switch" %>
+          <% end %>
+          <% if policy(@event).update?%>
+            <%= link_to "Edit my event", edit_event_url, class: "btn switch" %>
+          <% end %>
+      </div>  
+    </div>
+
+    </div>
+  </section>
+</main>

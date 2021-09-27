@@ -1,0 +1,19 @@
+{
+  "name": "event_calendar",
+  "private": true,
+  "dependencies": {
+    "@popperjs/core": "2.0.0-alpha.1",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.1.4-1",
+    "@rails/webpacker": "4.3.0",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.16.1",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0"
+  }
+}

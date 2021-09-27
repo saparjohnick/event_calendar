@@ -34,3 +34,8 @@ blocks:
         - name: RSpec
           commands:
             - bundle exec rspec
+      env_vars:
+        - name: RAILS_ENV
+          value: TEST
+        - name: DB_URL
+          value: BAR_2

@@ -29,7 +29,7 @@ blocks:
           - cache restore
           - bundle install
           - cache store
-					- sem-service start postgres 11
+          - sem-service start postgres 11
       jobs:
         - name: RSpec
           commands:

@@ -1,25 +1,41 @@
 version: v1.0
-name: Test MyApp
+name: Event calendar
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Rspec
+	  - name: Setup
+    dependencies: []
     task:
-      env_vars:
-        - name: DATABASE_URL
-          value: 'postgresql://postgres:@0.0.0.0:5432/myapp_test'
-        - name: RAILS_ENV
-          value: test
       jobs:
-        - name: Test
+        - name: bundle
           commands:
-            - checkout
-            - sem-service start postgres 12
             - sem-version ruby 2.6.6
+            - sem-version node 14.16.1
+            - checkout
             - cache restore
-            - bundle install --deployment --path vendor/bundle
+            - bundle install
             - cache store
+  - name: Integration tests
+    dependencies:
+      - Setup
+    task:
+      prologue:
+        commands:
+          - sem-version ruby 2.6.6
+          - sem-version node 14.16.1
+          - checkout
+          - cache restore
+          - bundle install
+          - cache store
+      jobs:
+        - name: RSpec
+          commands:
+            - sem-service start postgres
             - 'bundle exec rake db:setup'
-            - bundle exec rspec
+            - bundle exec rspec spec
+      epilogue:
+        always:
+          commands:
+            - test-results publish junit.xml

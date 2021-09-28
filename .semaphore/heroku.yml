@@ -31,5 +31,4 @@ blocks:
           commands:
             - git remote add heroku $HEROKU_REMOTE
             - git push heroku -f $SEMAPHORE_GIT_BRANCH:master
-            - heroku run --app $HEROKU_APP_NAME rails db:migrate
             - heroku ps:restart

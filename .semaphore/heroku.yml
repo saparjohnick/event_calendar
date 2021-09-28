@@ -5,10 +5,10 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Heroku deploy
+  - name: heroku
     task:
       jobs:
-        - name: heroku deploy
+        - name: deploy
           commands:
             - checkout
             - ssh-keyscan -H heroku.com >> ~/.ssh/known_hosts
@@ -17,6 +17,3 @@ blocks:
             - 'git config --global url.ssh://git@heroku.com/.insteadOf https://git.heroku.com/'
             - git remote add heroku $HEROKU_REMOTE
             - 'git push heroku -f $SEMAPHORE_GIT_BRANCH:master'
-      env_vars:
-        - name: HEROKU_REMOTE
-          value: 'https://git.heroku.com/eventcalendar-app.git'

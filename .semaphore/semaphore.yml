@@ -59,5 +59,3 @@ blocks:
 promotions:
   - name: Deploy to Heroku
     pipeline_file: heroku.yml
-    auto_promote:
-      when: "RSpec = 'passed' and branch = 'master'"

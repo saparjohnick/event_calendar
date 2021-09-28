@@ -1,5 +1,5 @@
 <div class="event_form">
-  <%= form_for(@event, html: { multipart: true }) do |f| %>
+  <%= form_for @event do |f| %>
     <%= render "devise/shared/error_messages", resource: f.object %>
     <div class="field">
       <%= f.label :name, "Event name:" %></br>

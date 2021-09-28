@@ -21,7 +21,6 @@ global_job_config:
     commands:
       - checkout
       - cache restore
-      - cp .env.example .env
 
 blocks:
   - name: Setup

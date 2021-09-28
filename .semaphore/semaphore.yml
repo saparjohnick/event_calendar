@@ -40,3 +40,8 @@ blocks:
           value: test
         - name: DATABASE_URL
           value: 'postgresql://postgres@localhost/event_calendar_test?encoding=utf8'
+promotions:
+  - name: if Rspec passed
+    pipeline_file: pipeline_2.yml
+    auto_promote:
+      when: branch = 'master' AND result = 'passed'

@@ -1,60 +1,47 @@
 version: v1.0
-name: eventcalendar-app
+name: Event calendar
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
-
-execution_time_limit:
-  hours: 1
-
-global_job_config:
-  env_vars:
-    - name: RAILS_ENV
-      value: 'test'
-    - name: DATABASE_URL
-      value: 'postgresql://postgres@localhost/event_calendar_test?encoding=utf8'
-    - name: BUNDLE_ARGS
-      value: '--deployment --without development staging production --jobs 4'
-  
-  prologue:
-    commands:
-      - checkout
-      - cache restore
-
 blocks:
   - name: Setup
+    dependencies: []
     task:
       jobs:
-        - name: Bundle
+        - name: bundle
           commands:
-            - bundle install ${BUNDLE_ARGS}
+            - sem-version ruby 2.6.6
+            - sem-version node 14.16.1
+            - checkout
+            - cache restore
+            - bundle install
             - cache store
-
-  - name: Quality
-    task:
-      jobs:
-        - name: Quality
-          commands:
-            - bundle install ${BUNDLE_ARGS} --local
-            - bin/quality
-
-  - name: Test
+  - name: Integration tests
+    dependencies:
+      - Setup
     task:
       prologue:
         commands:
-          - nvm use
           - sem-version ruby 2.6.6
-          - bundle install ${BUNDLE_ARGS} --local
-          - sem-service start postgres 11
-          - bundle exec rake db:setup
-          - bin/rails assets:precompile
-
+          - sem-version node 14.16.1
+          - checkout
+          - cache restore
+          - bundle install
+          - cache store
+          - sem-service start postgres
+          - 'bundle exec rake db:setup'
       jobs:
-        - name: Tests
+        - name: RSpec
           commands:
-            - bin/rspec
-
+            - bundle exec rspec
+      env_vars:
+        - name: RAILS_ENV
+          value: test
+        - name: DATABASE_URL
+          value: 'postgresql://postgres@localhost/event_calendar_test?encoding=utf8'
 promotions:
-  - name: Deploy to Heroku
+  - name: master
     pipeline_file: heroku.yml
+    auto_promote:
+      when: branch = 'master' AND result = 'passed'

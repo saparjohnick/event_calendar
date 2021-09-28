@@ -31,4 +31,4 @@ blocks:
           commands:
             - git remote add heroku $HEROKU_REMOTE
             - git push heroku -f $SEMAPHORE_GIT_BRANCH:master
-            - heroku ps:restart
+  

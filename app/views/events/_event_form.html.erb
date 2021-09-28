@@ -15,11 +15,11 @@
     </div>
     <div class="field">
       <%= f.label :start_time, "Event starts at:" %></br>
-      <%= f.datetime_local_field :start_time %>
+      <%= f.datetime_field :start_time %>
     </div>
     <div class="field">
       <%= f.label :end_time, "Evend ends at:" %></br>
-      <%= f.datetime_local_field :end_time %>
+      <%= f.datetime_field :end_time %>
     </div>  
 
       <%= f.submit "Save my event", class: "btn create_event"%>

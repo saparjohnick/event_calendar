@@ -1,24 +1,18 @@
-# README
+[![Build Status](https://sapar.semaphoreci.com/badges/event_calendar/branches/master.svg?style=shields)](https://sapar.semaphoreci.com/projects/event_calendar)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Event calendar app
 
-Things you may want to cover:
+Welcome to my [eventcalendar-app](https://eventcalendar-app.herokuapp.com/)
+Test project created for practicing purpose.
 
-* Ruby version
+Run tests: 
+```
+rake
+```
+Run server:
+```
+rails server
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The task originally taken from: https://github.com/fs/test-tasks/tree/master/ruby
+Previous task: https://github.com/saparjohnick/flatstack_task_one
